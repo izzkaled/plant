@@ -1,0 +1,59 @@
+!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link rel="stylesheet" href="stlye.css">
+</head>
+<body>
+    <!-- Checkout form -->
+    <section class="checkout">
+        <h1 class="heading">إتمام عملية الشراء</h1>
+
+        <div class="checkout-container">
+            <!-- عرض المنتجات الموجودة في السلة -->
+            <div class="cart-summary">
+                <h2>منتجاتك</h2>
+                <div class="cart-items">
+                    <!-- سيتم عرض المنتجات هنا عبر JavaScript -->
+                </div>
+                <div class="total-price">
+                    <h3>الإجمالي: <span id="total-amount">0</span> ريال</h3>
+                </div>
+            </div>
+
+            <!-- نموذج إدخال بيانات الشحن والدفع -->
+            <div class="billing-details">
+                <h2>معلومات الدفع</h2>
+                <form action="" id="checkout-form">
+                    <div class="inputBox">
+                        <label for="name">الاسم الكامل:</label>
+                        <input type="text" id="name" placeholder="أدخل اسمك الكامل" required>
+                    </div>
+                    <div class="inputBox">
+                        <label for="address">العنوان:</label>
+                        <input type="text" id="address" placeholder="أدخل عنوان الشحن" required>
+                    </div>
+                    <div class="inputBox">
+                        <label for="phone">رقم الهاتف:</label>
+                        <input type="text" id="phone" placeholder="أدخل رقم الهاتف" required>
+                    </div>
+                    <div class="inputBox">
+                        <label for="payment">طريقة الدفع:</label>
+                        <select id="payment" required>
+                            <option value="credit-card">بطاقة ائتمان</option>
+                            <option value="paypal">PayPal</option>
+                        </select>
+                    </div>
+                    <a href="thankyou.html" class="btn">إتمام الشراء</a>
+                </form>
+            </div>
+        </div>
+    </section>
+
+<script src="checkout.js"></script>
+</body>
+
+</html>

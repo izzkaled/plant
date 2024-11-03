@@ -1,0 +1,91 @@
+/* تصميم الصفحة العامة */
+body {
+    font-family: 'Cairo', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+}
+
+/* تصميم قسم إتمام الشراء */
+.checkout {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.checkout h1.heading {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #003580;
+}
+
+/* تصميم الحاويات الداخلية */
+.checkout-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* تصميم ملخص السلة */
+.cart-summary, .billing-details {
+    flex: 1;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+}
+
+.cart-summary h2, .billing-details h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.cart-items {
+    margin-bottom: 20px;
+}
+
+.total-price h3 {
+    font-size: 1.25rem;
+    color: #003580;
+}
+
+/* تصميم النموذج */
+.billing-details form .inputBox {
+    margin-bottom: 15px;
+}
+
+.billing-details form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.billing-details form input, .billing-details form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.billing-details form .btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #003580;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+}
+
+.billing-details form .btn:hover {
+    background-color: #0056b3;
+}

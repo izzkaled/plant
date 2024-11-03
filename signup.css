@@ -1,0 +1,113 @@
+/* تصميم أساسي للجسم */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* تصميم النموذج */
+.login-form-container, .signup-form-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+
+h3 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* الحقول */
+.box {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* زر الإدخال */
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #4cae4c;
+}
+
+/* روابط التسجيل */
+p {
+    font-size: 14px;
+    color: #555;
+}
+
+p a {
+    color: #5cb85c;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* تصميم رسالة الخطأ */
+.error-message {
+    color: red;
+    font-size: 14px;
+}
+
+/* تصميم رابط نسيان كلمة المرور */
+p a {
+    color: #007bff;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* تصميم تذكّرني */
+.check-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 10px 0;
+}
+
+.check-box input {
+    margin-right: 10px;
+}
+
+/* تصميم أيقونة إغلاق النموذج */
+#close-login-btn {
+    cursor: pointer;
+    font-size: 20px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    color: #333;
+}
+
+#close-login-btn:hover {
+    color: #ff4d4d;
+}
+#otp-section {
+    display: none;
+}

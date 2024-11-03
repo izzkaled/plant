@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div class="signup-form-container">
+        <form id="signupForm">
+            <h3>Create an Account</h3>
+            <span>Email</span>
+            <input type="email" class="box" id="email" placeholder="Enter your email..." required>
+            
+            <span>Phone Number</span>
+            <input type="tel" class="box" id="phone" placeholder="Enter your phone number..." required>
+            
+            <span>Password</span>
+            <input type="password" class="box" id="password" placeholder="Enter your password..." required>
+            
+            <span>Repeat Password</span>
+            <input type="password" class="box" id="repeatPassword" placeholder="Repeat your password..." required>
+            
+            <input type="submit" value="Sign Up" class="btn">
+            <p>Already have an account? <a href="login.html">Sign in</a></p>
+        </form>
+
+        <!-- قسم OTP يظهر بعد إنشاء الحساب للتحقق -->
+        <div id="otp-section" style="display:none;">
+            <h3>Enter OTP</h3>
+            <span>OTP</span>
+            <input type="text" class="box" id="otp" placeholder="Enter OTP" required>
+            <input type="submit" value="Verify OTP" class="btn" id="verify-otp-btn">
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/11.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js"></script>
+
+    <script>
+        // إعداد Firebase (استبدل هذه الإعدادات بإعدادات مشروعك في Firebase)
+        const firebaseConfig = {
+       apiKey: "AIzaSyCH8NuONVkg2rnRfQbdsNnckmzLO1LSryE",
+       authDomain: "cardom-f3124.firebaseapp.com",
+       projectId: "cardom-f3124",
+       storageBucket: "cardom-f3124.appspot.com",
+       messagingSenderId: "82439399080",
+        appId: "1:82439399080:web:21379c01eaa834104cc49d",
+       measurementId: "G-LVC0XQHE3J"
+       };
+        firebase.initializeApp(firebaseConfig);
+
+        const signupForm = document.getElementById('signupForm');
+        const otpSection = document.getElementById('otp-section');
+        const verifyOtpBtn = document.getElementById('verify-otp-btn');
+
+        signupForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const repeatPassword = document.getElementById('repeatPassword').value;
+            const phone = document.getElementById('phone').value;
+
+            // التحقق من أن كلمة المرور مطابقة
+            if (password !== repeatPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            // إنشاء الحساب باستخدام Firebase
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                alert("Account created successfully!");
+
+                // إرسال OTP للتحقق من رقم الهاتف
+                sendOtp(phone);
+            })
+            .catch((error) => {
+                alert("Error creating account: " + error.message);
+            });
+        });
+
+        // وظيفة إرسال OTP باستخدام Firebase Authentication
+        function sendOtp(phoneNumber) {
+            // إعداد المصدق (recaptcha)
+            const recaptchaVerifier = new firebase.auth.RecaptchaVerifier('verify-otp-btn', {
+                'size': 'invisible',
+                'callback': (response) => {
+                    // إعادة توجيه المستخدم للتحقق من OTP
+                }
+            });
+
+            // استخدام Firebase لإرسال OTP
+            firebase.auth().signInWithPhoneNumber(phoneNumber, recaptchaVerifier)
+            .then((confirmationResult) => {
+                otpSection.style.display = 'block'; // عرض قسم OTP
+                window.confirmationResult = confirmationResult;
+            }).catch((error) => {
+                alert("Error sending OTP: " + error.message);
+            });
+        }
+
+        // تحقق من OTP
+        verifyOtpBtn.addEventListener('click', function() {
+            const otp = document.getElementById('otp').value;
+            window.confirmationResult.confirm(otp)
+            .then((result) => {
+                alert("Phone number verified successfully!");
+                // يمكنك إعادة توجيه المستخدم بعد التحقق من OTP
+                window.location.href = 'homepage.html'; 
+            })
+            .catch((error) => {
+                alert("Invalid OTP. Please try again.");
+            });
+        });
+    </script>
+</body>
+</html>
